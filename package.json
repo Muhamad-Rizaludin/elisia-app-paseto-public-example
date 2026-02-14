@@ -1,0 +1,36 @@
+{
+  "name": "elisia-app-paseto-public-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development bun --watch src/index.ts",
+    "build": "bun build ./src/index.ts --outdir ./dist --target bun",
+    "start": "cross-env NODE_ENV=production bun ./dist/index.js",
+    "db:migrate": "bunx sequelize-cli db:migrate --config sequelize.config.js --migrations-path src/migrations",
+    "db:seed": "bunx sequelize-cli db:seed:all --config sequelize.config.js --seeders-path src/seeders",
+    "db:reset": "bunx sequelize-cli db:migrate:undo:all --config sequelize.config.js --migrations-path src/migrations && bunx sequelize-cli db:migrate --config sequelize.config.js --migrations-path src/migrations && bunx sequelize-cli db:seed:all --config sequelize.config.js --seeders-path src/seeders",
+    "test": "cross-env NODE_ENV=test bun test",
+    "test:unit": "cross-env NODE_ENV=test bun test tests/unit",
+    "test:integration": "cross-env NODE_ENV=test bun test tests/integration"
+  },
+  "dependencies": {
+    "@elysiajs/cookie": "latest",
+    "@elysiajs/swagger": "^1.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "elysia": "^1.1.20",
+    "paseto": "^3.1.4",
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3",
+    "yup": "^1.4.0",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.10.1",
+    "cross-env": "^7.0.3",
+    "sequelize-cli": "^6.6.2",
+    "typescript": "^5.6.3"
+  }
+}
